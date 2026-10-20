@@ -18,3 +18,11 @@ logs/
 *.key
 .keys/
 .DS_Store
+.lab-data/
+.lab-backups/
+.lab-docker/
+*.mdb
+*.ext4
+*.p12
+*.pfx
+*.jks

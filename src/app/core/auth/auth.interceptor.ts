@@ -9,8 +9,6 @@ export const authInterceptor: HttpInterceptorFn = (request, next) => {
   if (url.origin !== api.origin || !(url.pathname === '/api/games' || url.pathname.startsWith('/api/games/'))) return next(request);
   const auth = inject(AuthService);
   return from(auth.accessToken()).pipe(switchMap(token => {
-    // Tras renovar, se muestra exactamente el access token utilizado por el POST.
-    if (request.method === 'POST') auth.logDemoToken('agregar videojuego');
     return next(request.clone({setHeaders: {Authorization: `Bearer ${token}`}}));
   }));
 };

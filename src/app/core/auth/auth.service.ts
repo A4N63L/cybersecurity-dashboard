@@ -1,7 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import Keycloak from 'keycloak-js';
 import { environment } from '../../../environments/environment';
-import { logLocalDemoToken } from './demo-token.logger';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -22,7 +21,6 @@ export class AuthService {
       this.username.set(this.keycloak.tokenParsed?.['preferred_username'] ?? '');
       this.keycloak.onAuthLogout = () => this.authenticated.set(false);
       this.keycloak.onAuthRefreshError = () => this.authenticated.set(false);
-      if (authenticated) this.logDemoToken('inicio de sesión');
     } catch {
       this.error.set('No se pudo conectar con Keycloak. Comprueba que el laboratorio esté disponible.');
     }
@@ -40,8 +38,5 @@ export class AuthService {
     catch { this.authenticated.set(false); throw new Error('La sesión ha caducado. Vuelve a iniciar sesión.'); }
     if (!this.keycloak.token) throw new Error('Token no disponible');
     return this.keycloak.token;
-  }
-  logDemoToken(action: string): void {
-    logLocalDemoToken(action, this.keycloak.token);
   }
 }

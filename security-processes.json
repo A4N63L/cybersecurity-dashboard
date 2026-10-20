@@ -1,0 +1,1 @@
+[{"command":["nginx","-g","daemon off;"]}]

@@ -12,7 +12,7 @@ import { GameService } from '../services/game.service';
     @if(form.invalid && attempted()) {<p class="error" role="alert">Completa todos los campos. El año debe estar entre 1950 y 2100.</p>}
     @if(error()) {<p class="error" role="alert">{{error()}}</p>}
     <div class="form-actions"><a class="ghost" routerLink="/dashboard">Cancelar</a><button class="button" type="submit" [disabled]="saving()">{{saving() ? 'Guardando…' : 'Guardar videojuego →'}}</button></div>
-  </form><aside class="panel form-aside"><span class="aside-icon">✦</span><h2>Tu próximo favorito</h2><p>Los juegos quedan guardados en SQLite, incluso después de reiniciar los contenedores.</p><hr><p class="fineprint">DEMO LOCAL</p><p class="small">La solicitud utiliza tu JWT mediante el interceptor. Puedes inspeccionarlo en la consola del navegador.</p></aside></div>
+  </form><aside class="panel form-aside"><span class="aside-icon">✦</span><h2>Tu próximo favorito</h2><p>Los juegos quedan guardados en SQLite, incluso después de reiniciar los contenedores.</p><hr><p class="fineprint">SESIÓN OIDC</p><p class="small">La solicitud utiliza tu sesión mediante el interceptor, sin imprimir credenciales en la consola.</p></aside></div>
 `})
 export class AddGameComponent {
   private fb = inject(NonNullableFormBuilder); private service = inject(GameService); private router = inject(Router);
